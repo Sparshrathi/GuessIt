@@ -3,7 +3,7 @@ import { StyleSheet, Alert, Text, View,TouchableWithoutFeedback,Button,Keyboard}
 import Colour from './Constants/Colour';
 import Card from '../Components/Card ';
 import Input from '../Components/Input';
-
+import NumberContainer from '../Components/NumberContainer';
 const StartGameScreen = props => {
 
     const [enterValue,setEnterValue]= useState('');
@@ -26,7 +26,8 @@ const StartGameScreen = props => {
                 Alert.alert('Invalid Number','Number has to br between 1 to 99',
                 [{text:'Okay' , style:'destructive',onPress: resetInputHandler }])
                 return;
-            } 
+            }
+        Keyboard.dismiss(); 
         setConfirmed(true);
         setSeletedValue(chosenNumber);
         setEnterValue('');
@@ -34,7 +35,12 @@ const StartGameScreen = props => {
 
         let confirmedOutput; 
         if(confirmed){
-            confirmedOutput= <Text>Chosen Number : {seletedValue} </Text>
+            confirmedOutput= 
+            (<Card style={styles.summaryContainer}>
+            <Text>You Selected </Text>
+            <NumberContainer>{seletedValue}</NumberContainer>
+            <Button title='Start Game' />
+            </Card>)
         }
 
     return (
@@ -101,6 +107,11 @@ const styles = StyleSheet.create({
     input:{
         width:50,
         textAlign:'center'
+    },
+
+    summaryContainer:{
+        marginTop:20,
+        alignItems:'center'
     }
 
 });
