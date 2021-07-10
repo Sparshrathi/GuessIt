@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import { StyleSheet, Alert, Text, View,TouchableWithoutFeedback,Button,Keyboard} from 'react-native';
-import Colour from './Constants/Colour';
+import Colour from '../Constants/Colour';
 import Card from '../Components/Card ';
 import Input from '../Components/Input';
 import NumberContainer from '../Components/NumberContainer';
@@ -39,7 +39,7 @@ const StartGameScreen = props => {
             (<Card style={styles.summaryContainer}>
             <Text>You Selected </Text>
             <NumberContainer>{seletedValue}</NumberContainer>
-            <Button title='Start Game' />
+            <Button title='Start Game' onPress={() => props.onStartGame(seletedValue)} />
             </Card>)
         }
 
